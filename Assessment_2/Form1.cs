@@ -28,8 +28,7 @@ namespace Assessment_2
             
             Customer customer = new Customer(customerName, customerAge, customerAddress, customerAmountOwed);
             _customerTree.InsertCustomer(customer);
-            
-            txtInsert.Clear();
+
             UpdateTraversalList();
         }
 
@@ -37,12 +36,78 @@ namespace Assessment_2
         {
             string searchName = txtSearch.Text;
             Customer customer = _customerTree.SearchCustomer(searchName);
+
+            lstTraversal.Items.Clear();
+            lstTraversal.Items.Add(customer);
         }
         
         private void UpdateTraversalList()
         {
             lstTraversal.Items.Clear();
-            _customerTree.GetCustomersPreOrder().ToList().ForEach(customer => lstTraversal.Items.Add(customer.GetInformation());
+            _customerTree.GetCustomersPreOrder().ToList().ForEach(customer => lstTraversal.Items.Add(customer.GetInformation()));
+            UpdateCustomerCount();
+        }
+
+        // Event handlers for the traversal buttons
+        private void btnPreOrder_Click(object sender, EventArgs e)
+        {
+            UpdateTraversalListAction("preorder");
+        }
+
+        private void btnInOrder_Click(object sender, EventArgs e)
+        {
+            UpdateTraversalListAction("inorder");
+        }
+
+        private void btnPostOrder_Click(object sender, EventArgs e)
+        {
+            UpdateTraversalListAction("postorder");
+        }
+
+        // Updated method to handle all three types of traversal
+        private void UpdateTraversalListAction(string traversalType)
+        {
+            lstTraversal.Items.Clear();
+            switch (traversalType)
+            {
+                case "PreOrder":
+                    _customerTree.GetCustomersPreOrder().ToList().ForEach(customer => lstTraversal.Items.Add(customer.GetInformation()));
+                    break;
+                case "InOrder":
+                    _customerTree.GetCustomersInOrder().ToList().ForEach(customer => lstTraversal.Items.Add(customer.GetInformation()));
+                    break;
+                case "PostOrder":
+                    _customerTree.GetCustomersPostOrder().ToList().ForEach(customer => lstTraversal.Items.Add(customer.GetInformation()));
+                    break;
+                default:
+                    break;
+            }
+            UpdateCustomerCount();
+        }
+
+        // Event handler for clicking the "Update Count" button
+        private void btnUpdateCount_Click(object sender, EventArgs e)
+        {
+            UpdateCustomerCount();
+        }
+
+        // Method to update the customer count display
+        private void UpdateCustomerCount()
+        {
+            // Call the CountCustomers method of _customerTree to get the current count
+            int customerCount = _customerTree.CountCustomers();
+            // Update the label's text to show the current count
+            lblCustomerCount.Text = $"{customerCount}";
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
