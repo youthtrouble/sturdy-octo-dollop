@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WindowsFormsApp4")]
+[assembly: AssemblyTitle("Assessment_2")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("MMU")]
-[assembly: AssemblyProduct("WindowsFormsApp4")]
+[assembly: AssemblyProduct("Assessment_2")]
 [assembly: AssemblyCopyright("Copyright © MMU 2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
