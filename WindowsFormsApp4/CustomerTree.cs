@@ -35,9 +35,9 @@ namespace Assessment_2
             return customerTree.TraversePostOrder();
         }
 
-        public Customer SearchCustomer(int id)
+        public Customer SearchCustomer(String name)
         {
-            return customerTree.Search(id);
+            return customerTree.FindByAttribute(customer => customer.Name, name);
         }
 
         public int CountCustomers()

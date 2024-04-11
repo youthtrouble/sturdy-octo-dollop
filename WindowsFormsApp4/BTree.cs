@@ -12,6 +12,19 @@ namespace Assessment_2
         {
             Root = InsertRec(Root, value);
         }
+        
+        private int CountRec(Node<T> node)
+        {
+            if (node == null)
+            {
+                return 0;
+            }
+            else
+            {
+                // Count the node itself (+1), then count all nodes in the left subtree and the right subtree
+                return 1 + CountRec(node.Left) + CountRec(node.Right);
+            }
+        }
 
         private Node<T> InsertRec(Node<T> node, T value)
         {
@@ -101,7 +114,7 @@ namespace Assessment_2
 
         public int Count()
         {
-            return root;
+            return CountRec(Root);
         }
     }
 }
