@@ -7,12 +7,31 @@ namespace Assessment_2
     internal class BinarySearchTree<T> where T : IComparable<T>
     {
         public Node<T> Root { get; private set; }
+        public int count;
+        
+        public BinarySearchTree()
+        {
+            Root = null;
+            count = 0;
+        }
 
+        /// <summary>
+        /// Inserts a value into the binary search tree.
+        /// Time Complexity: Average O(log n), Worst O(n) for unbalanced tree.
+        /// </summary>
         public void Insert(T value)
         {
+            if (value == null)
+                throw new ArgumentNullException(nameof(value));
+
             Root = InsertRec(Root, value);
+            count++;
         }
         
+        /// <summary>
+        /// Recursively counts the number of nodes in the tree.
+        /// Time Complexity: O(n), as it needs to visit every node.
+        /// </summary>
         private int CountRec(Node<T> node)
         {
             if (node == null)
@@ -40,6 +59,10 @@ namespace Assessment_2
             return node;
         }
 
+        /// <summary>
+        /// Traverses the tree in pre-order and returns a list of values.
+        /// Time Complexity: O(n), as it traverses every node.
+        /// </summary>
         public List<T> TraversePreOrder()
         {
             List<T> values = new List<T>();
@@ -47,6 +70,7 @@ namespace Assessment_2
             return values;
         }
 
+        // Helper method for pre-order traversal, not directly exposed.
         private void TraversePreOrderRec(Node<T> node, List<T> values)
         {
             if (node != null)
@@ -57,23 +81,36 @@ namespace Assessment_2
             }
         }
 
-        public List<T> TraverseInOrder()
+        /// <summary>
+        /// Lazily traverses the tree in order and yields each value.
+        /// Time Complexity: O(n), as it traverses every node once.
+        /// </summary>
+        public IEnumerable<T> TraverseInOrder()
         {
-            List<T> values = new List<T>();
-            TraverseInOrderRec(Root, values);
-            return values;
+            foreach (var value in TraverseInOrderRec(Root))
+                yield return value;
         }
 
-        private void TraverseInOrderRec(Node<T> node, List<T> values)
+        // Helper recursive method for in-order traversal.
+        private IEnumerable<T> TraverseInOrderRec(Node<T> node)
         {
             if (node != null)
             {
-                TraverseInOrderRec(node.Left, values);
-                values.Add(node.Value);
-                TraverseInOrderRec(node.Right, values);
+                foreach (var value in TraverseInOrderRec(node.Left))
+                    yield return value;
+
+                yield return node.Value;
+
+                foreach (var value in TraverseInOrderRec(node.Right))
+                    yield return value;
             }
         }
 
+
+        /// <summary>
+        /// Traverses the tree in post-order and returns a list of values.
+        /// Time Complexity: O(n), as it traverses every node.
+        /// </summary>
         public List<T> TraversePostOrder()
         {
             List<T> values = new List<T>();
@@ -81,6 +118,7 @@ namespace Assessment_2
             return values;
         }
 
+        // Helper method for post-order traversal, not directly exposed.
         private void TraversePostOrderRec(Node<T> node, List<T> values)
         {
             if (node != null)
@@ -91,11 +129,16 @@ namespace Assessment_2
             }
         }
 
+        /// <summary>
+        /// Searches for a value in the tree by a specific attribute.
+        /// Time Complexity: Average O(log n), Worst O(n) for unbalanced trees.
+        /// </summary>
         public T FindByAttribute(Func<T, string> attributeSelector, string valueToFind)
         {
             return FindByAttributeRec(Root, attributeSelector, valueToFind);
         }
 
+        // Helper method for attribute-based search, not directly exposed.
         private T FindByAttributeRec(Node<T> node, Func<T, string> attributeSelector, string valueToFind)
         {
             if (node == null)
@@ -111,7 +154,21 @@ namespace Assessment_2
             else
                 return FindByAttributeRec(node.Right, attributeSelector, valueToFind);
         }
+        
+        /// <summary>
+        /// Returns the number of nodes in the tree, as tracked by insert operations.
+        /// This method provides direct access to the count of nodes that have been inserted into the tree.
+        /// Time Complexity: O(1), as it simply returns the value of an already maintained count variable.
+        /// </summary>
+        public int CountByInsert()
+        {
+            return count;
+        }
 
+        /// <summary>
+        /// Returns the count of nodes in the tree. Utilizes a recursive helper method to count nodes.
+        /// Time Complexity: O(n), as it potentially needs to traverse the entire tree.
+        /// </summary>
         public int Count()
         {
             return CountRec(Root);
