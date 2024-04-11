@@ -38,7 +38,7 @@ namespace Assessment_2
             Customer customer = _customerTree.SearchCustomer(searchName);
 
             lstTraversal.Items.Clear();
-            lstTraversal.Items.Add(customer);
+            lstTraversal.Items.Add(customer.GetInformation());
         }
         
         private void UpdateTraversalList()
@@ -51,17 +51,17 @@ namespace Assessment_2
         // Event handlers for the traversal buttons
         private void btnPreOrder_Click(object sender, EventArgs e)
         {
-            UpdateTraversalListAction("preorder");
+            UpdateTraversalListAction("PreOrder");
         }
 
         private void btnInOrder_Click(object sender, EventArgs e)
         {
-            UpdateTraversalListAction("inorder");
+            UpdateTraversalListAction("InOrder");
         }
 
         private void btnPostOrder_Click(object sender, EventArgs e)
         {
-            UpdateTraversalListAction("postorder");
+            UpdateTraversalListAction("PostOrder");
         }
 
         // Updated method to handle all three types of traversal

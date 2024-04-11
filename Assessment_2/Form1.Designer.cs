@@ -50,12 +50,13 @@
             // 
             // btnInsert
             // 
-            this.btnInsert.Location = new System.Drawing.Point(382, 89);
+            this.btnInsert.Location = new System.Drawing.Point(362, 87);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(119, 29);
             this.btnInsert.TabIndex = 0;
             this.btnInsert.Text = "Add Customer";
             this.btnInsert.UseVisualStyleBackColor = true;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // txtName
             // 
@@ -154,6 +155,7 @@
             this.btnSearch.TabIndex = 12;
             this.btnSearch.Text = "Search Customer";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnPreOrder
             // 
@@ -163,6 +165,7 @@
             this.btnPreOrder.TabIndex = 13;
             this.btnPreOrder.Text = "PreOrder";
             this.btnPreOrder.UseVisualStyleBackColor = true;
+            this.btnPreOrder.Click += new System.EventHandler(this.btnPreOrder_Click);
             // 
             // btnInOrder
             // 
@@ -172,6 +175,7 @@
             this.btnInOrder.TabIndex = 14;
             this.btnInOrder.Text = "InOrder";
             this.btnInOrder.UseVisualStyleBackColor = true;
+            this.btnInOrder.Click += new System.EventHandler(this.btnInOrder_Click);
             // 
             // btnPostOrder
             // 
@@ -181,11 +185,12 @@
             this.btnPostOrder.TabIndex = 15;
             this.btnPostOrder.Text = "PostOrder";
             this.btnPostOrder.UseVisualStyleBackColor = true;
+            this.btnPostOrder.Click += new System.EventHandler(this.btnPostOrder_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(562, 93);
+            this.label2.Location = new System.Drawing.Point(607, 96);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 20);
             this.label2.TabIndex = 17;
@@ -194,7 +199,7 @@
             // 
             // lblCustomerCount
             // 
-            this.lblCustomerCount.Location = new System.Drawing.Point(632, 90);
+            this.lblCustomerCount.Location = new System.Drawing.Point(684, 93);
             this.lblCustomerCount.Name = "lblCustomerCount";
             this.lblCustomerCount.Size = new System.Drawing.Size(67, 26);
             this.lblCustomerCount.TabIndex = 16;
